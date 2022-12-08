@@ -11,18 +11,19 @@ import com.bumptech.glide.Glide
  * E-mail demonl@binarywalk.com
  * Desc:
  */
-class DexWork {
+object DexStaticWork {
 
+    @JvmStatic
     fun showNavToast(context: Context, text: String) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-
+    @JvmStatic
     fun loadImage(imageView: ImageView, url: String) {
         Glide.with(imageView.context).load(url).into(imageView)
     }
 
-
+    @JvmStatic
     fun getClassName(): String {
         return this.javaClass.canonicalName
     }

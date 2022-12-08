@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val loader = Utils.loadDexClass(this, dexName)
 
+        //非静态类
         val cla = loader?.loadClass("com.demon.dexlib.DexWork")
 
         cla?.run {
@@ -37,6 +38,26 @@ class MainActivity : AppCompatActivity() {
                 getDeclaredMethod("loadImage", ImageView::class.java, String::class.java).invoke(
                     newInstance(), img,
                     "https://idemon.oss-cn-guangzhou.aliyuncs.com/D.png"
+                )
+            }
+        }
+
+        //静态类
+        val claStatic = loader?.loadClass("com.demon.dexlib.DexStaticWork")
+
+        claStatic?.run {
+            val className = getMethod("getClassName").invoke(null) as String
+            findViewById<TextView>(R.id.text2).text = className
+
+            findViewById<Button>(R.id.btn22).setOnClickListener {
+                getDeclaredMethod("showNavToast", Context::class.java, String::class.java).invoke(this, this@MainActivity, className)
+            }
+
+            val img = findViewById<ImageView>(R.id.iv)
+            findViewById<Button>(R.id.btn22).setOnClickListener {
+                getDeclaredMethod("loadImage", ImageView::class.java, String::class.java).invoke(
+                    this, img,
+                    "https://idemon.oss-cn-guangzhou.aliyuncs.com/luffy.jpg"
                 )
             }
         }
