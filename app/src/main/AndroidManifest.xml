@@ -26,6 +26,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name="com.demon.dexdynamicload.InstanceActivity" />
+        <activity android:name="com.demon.dexdynamicload.NormalActivity" />
+        <activity android:name="com.demon.dexdynamicload.StaticActivity" />
+        <activity android:name="com.demon.dexdynamicload.CompanionActivity" />
+        <activity android:name="com.demon.dexdynamicload.ObjectActivity" />
     </application>
 
 </manifest>

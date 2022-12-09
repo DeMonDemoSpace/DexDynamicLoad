@@ -12,6 +12,8 @@ import java.io.*
  */
 object Utils {
 
+    var loader: DexClassLoader? = null
+
     /**
      * 复制dex到沙盒中
      */
