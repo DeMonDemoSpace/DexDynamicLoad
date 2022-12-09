@@ -29,17 +29,18 @@ class StaticActivity : AppCompatActivity() {
         val claStatic = Utils.loader?.loadClass("com.demon.dexlib.DexStaticWork")
 
         claStatic?.run {
+
             val className = getMethod("getClassName").invoke(null) as String
             findViewById<TextView>(R.id.text).text = className
 
             findViewById<Button>(R.id.btn1).setOnClickListener {
-                getDeclaredMethod("showNavToast", Context::class.java, String::class.java).invoke(this, this@StaticActivity, className)
+                getDeclaredMethod("showNavToast", Context::class.java, String::class.java).invoke(null, this@StaticActivity, className)
             }
 
             val img = findViewById<ImageView>(R.id.iv)
             findViewById<Button>(R.id.btn2).setOnClickListener {
                 getDeclaredMethod("loadImage", ImageView::class.java, String::class.java).invoke(
-                    this, img,
+                    null, img,
                     "https://idemon.oss-cn-guangzhou.aliyuncs.com/luffy.jpg"
                 )
             }

@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-
 class InstanceActivity : AppCompatActivity() {
 
     private val TAG = "InstanceActivity"

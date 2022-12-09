@@ -49,7 +49,7 @@ task againMakeJar(type: Copy) {
     def name = project.name
     //删除之前的旧jar包
     delete 'libs/' + name + '.jar'
-    //从这个目录下取出默认jar包
+    //从这个目录下取出默认jar包，不同版本目录均不一样，根据自己项目在build中找classes.jar所在目录
     from('build/intermediates/compile_library_classes_jar/release/')
     into('libs/') //将jar包输出到指定目录下
     include('classes.jar')
