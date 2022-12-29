@@ -39,9 +39,14 @@ class StaticActivity : AppCompatActivity() {
 
             val img = findViewById<ImageView>(R.id.iv)
             findViewById<Button>(R.id.btn2).setOnClickListener {
-                getDeclaredMethod("loadImage", ImageView::class.java, String::class.java).invoke(
+                getDeclaredMethod("loadImage", ImageView::class.java).invoke(
                     null, img,
-                    "https://idemon.oss-cn-guangzhou.aliyuncs.com/luffy.jpg"
+                )
+            }
+
+            findViewById<Button>(R.id.btn3).setOnClickListener {
+                getMethod("synthesisQRCode", ImageView::class.java).invoke(
+                    null, img
                 )
             }
         }

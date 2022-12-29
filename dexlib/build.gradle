@@ -31,9 +31,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation fileTree(dir: 'libs', include: ['*'])
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
 
     //Glide4.x
     implementation 'com.github.bumptech.glide:glide:4.13.1'
@@ -44,17 +43,27 @@ dependencies {
 
 //根据Library名称生存jar包到build目录下
 //可根据自己需求更改
-task againMakeJar(type: Copy) {
+task aMakeJar(type: Jar) {
     //Library名称
     def name = project.name
     //删除之前的旧jar包
-    delete 'libs/' + name + '.jar'
+    delete 'makejar/' + name + '.jar'
+    //删除之前的旧dex包
+    delete 'makejar/' + name + '_dex.jar'
+    //目标jar包名称
+    archiveName name + '.jar'
     //从这个目录下取出默认jar包，不同版本目录均不一样，根据自己项目在build中找classes.jar所在目录
-    from('build/intermediates/compile_library_classes_jar/release/')
-    into('libs/') //将jar包输出到指定目录下
-    include('classes.jar')
-    rename('classes.jar', name + '.jar') //自定义jar包的名字
+    from(project.zipTree('build/intermediates/aar_main_jar/release/classes.jar'))
+    from(project.zipTree("libs/zxing-core-3.5.1.jar")) //第三方jar，是需要打包进入jar的
+    include('com/**')
+    include('**/')
+    //需排除一些无用文件
+    exclude('*/BuildConfig.class')
+    exclude('*/BuildConfig\$*.class')
+    //打进jar包后的文件目录
+    destinationDirectory = file('makejar')
 }
-againMakeJar.dependsOn(build)
+aMakeJar.dependsOn(build)
+
 
 

@@ -47,9 +47,14 @@ class CompanionActivity : AppCompatActivity() {
 
                         val img = findViewById<ImageView>(R.id.iv)
                         findViewById<Button>(R.id.btn2).setOnClickListener {
-                            companion.getMethod("loadImage", ImageView::class.java, String::class.java).invoke(
-                                instance, img,
-                                "https://idemon.oss-cn-guangzhou.aliyuncs.com/D.png"
+                            companion.getMethod("loadImage", ImageView::class.java).invoke(
+                                instance, img
+                            )
+                        }
+
+                        findViewById<Button>(R.id.btn3).setOnClickListener {
+                            companion.getMethod("synthesisQRCode", ImageView::class.java).invoke(
+                                instance, img
                             )
                         }
                     }

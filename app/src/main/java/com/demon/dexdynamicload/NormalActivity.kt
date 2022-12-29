@@ -13,6 +13,7 @@ class NormalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show)
 
+
         /**
          * 非静态类反射，kt代码跟java代码反射调用完全一致
          * invoke 第一个参数传入类实例
@@ -29,9 +30,14 @@ class NormalActivity : AppCompatActivity() {
 
             val img = findViewById<ImageView>(R.id.iv)
             findViewById<Button>(R.id.btn2).setOnClickListener {
-                getMethod("loadImage", ImageView::class.java, String::class.java).invoke(
-                    newInstance(), img,
-                    "https://idemon.oss-cn-guangzhou.aliyuncs.com/D.png"
+                getMethod("loadImage", ImageView::class.java).invoke(
+                    newInstance(), img
+                )
+            }
+
+            findViewById<Button>(R.id.btn3).setOnClickListener {
+                getMethod("synthesisQRCode", ImageView::class.java).invoke(
+                    newInstance(), img
                 )
             }
         }

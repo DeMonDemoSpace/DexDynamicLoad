@@ -49,9 +49,14 @@ class InstanceActivity : AppCompatActivity() {
 
                         val img = findViewById<ImageView>(R.id.iv)
                         findViewById<Button>(R.id.btn2).setOnClickListener {
-                            getMethod("loadImage", ImageView::class.java, String::class.java).invoke(
-                                getInstance, img,
-                                "https://idemon.oss-cn-guangzhou.aliyuncs.com/D.png"
+                            getMethod("loadImage", ImageView::class.java).invoke(
+                                getInstance, img
+                            )
+                        }
+
+                        findViewById<Button>(R.id.btn3).setOnClickListener {
+                            getMethod("synthesisQRCode", ImageView::class.java).invoke(
+                                getInstance, img
                             )
                         }
                     }

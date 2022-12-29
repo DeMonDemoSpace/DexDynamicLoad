@@ -1,5 +1,6 @@
 package com.demon.dexdynamicload
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +19,19 @@ class MainActivity : AppCompatActivity() {
         Utils.copyDex(this, dexName)
 
         Utils.loader = Utils.loadDexClass(this, dexName)
+
+        /**
+         * 初始化
+         */
+        val cla = Utils.loader?.loadClass("com.demon.dexlib.DexInit")
+        cla?.run {
+            getDeclaredMethod("init", Context::class.java, String::class.java, String::class.java).invoke(
+                null, this@MainActivity.applicationContext,
+                "https://idemon.oss-cn-guangzhou.aliyuncs.com/luffy.jpg",
+                "https://www.baidu.com/"
+            )
+        }
+
 
 
         findViewById<Button>(R.id.btn1).setOnClickListener {
