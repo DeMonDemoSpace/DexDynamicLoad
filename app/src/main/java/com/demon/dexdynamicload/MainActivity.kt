@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
         Utils.copyDex(this, dexName)
 
         Utils.loader = Utils.loadDexClass(this, dexName)
-        Utils.replaceLoadedApkClassLoader(this)
+        Utils.loader?.run {
+            Utils.replaceLoadedApkClassLoader(this@MainActivity, this)
+        }
 
         /**
          * 初始化

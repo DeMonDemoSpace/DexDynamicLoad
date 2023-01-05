@@ -1,7 +1,6 @@
 package com.demon.dexlib
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -19,7 +18,8 @@ class TestActivity : AppCompatActivity() {
         val text = TextView(this)
         setContentView(text)
 
-        val sb :StringBuilder = StringBuilder()
+        val sb: StringBuilder = StringBuilder()
+        sb.append("TestActivity\n")
         intent.extras?.run {
             keySet().forEach {
                 sb.append("$it=${get(it)}\n")

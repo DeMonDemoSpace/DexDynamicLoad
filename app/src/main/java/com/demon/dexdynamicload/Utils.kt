@@ -77,15 +77,18 @@ object Utils {
 
     /**
      * 替换 LoadedApk 中的 类加载器 ClassLoader
+     *
+     *  @param context
+     *  @param loader 动态加载dex的ClassLoader
      */
-    fun replaceLoadedApkClassLoader(context: Context) {
+    fun replaceLoadedApkClassLoader(context: Context, loader: DexClassLoader) {
         // I. 获取 ActivityThread 实例对象
         // 获取 ActivityThread 字节码类 , 这里可以使用自定义的类加载器加载
         // 原因是 基于 双亲委派机制 , 自定义的 DexClassLoader 无法加载 , 但是其父类可以加载
         // 即使父类不可加载 , 父类的父类也可以加载
         var activityThreadClass: Class<*>? = null
         try {
-            activityThreadClass = loader?.loadClass("android.app.ActivityThread")
+            activityThreadClass = loader.loadClass("android.app.ActivityThread")
         } catch (e: ClassNotFoundException) {
             e.printStackTrace()
         }
@@ -145,7 +148,7 @@ object Utils {
         // 加载 android.app.LoadedApk 类
         var loadedApkClass: Class<*>? = null
         try {
-            loadedApkClass = loader?.loadClass("android.app.LoadedApk")
+            loadedApkClass = loader.loadClass("android.app.LoadedApk")
         } catch (e: ClassNotFoundException) {
             e.printStackTrace()
         }
