@@ -38,4 +38,13 @@ object DexInit {
         this.qrUrl = qrUrl
     }
 
+
+    @JvmStatic
+    fun start() {
+        val intent = Intent(mContext, TestActivity::class.java)
+        if (mContext !is Activity) {
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        mContext.startActivity(intent)
+    }
 }

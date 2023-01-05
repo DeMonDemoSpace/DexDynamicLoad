@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         Utils.copyDex(this, dexName)
 
         Utils.loader = Utils.loadDexClass(this, dexName)
+        Utils.replaceLoadedApkClassLoader(this)
 
         /**
          * 初始化
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
                 "https://idemon.oss-cn-guangzhou.aliyuncs.com/luffy.jpg",
                 "https://www.baidu.com/"
             )
+
+            findViewById<Button>(R.id.btn7).setOnClickListener {
+                getDeclaredMethod("start").invoke(null)
+            }
         }
 
 

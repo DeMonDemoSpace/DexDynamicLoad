@@ -75,15 +75,10 @@ object Utils {
         return null
     }
 
-
     /**
      * 替换 LoadedApk 中的 类加载器 ClassLoader
-     * 启动Dex中的Activity
-     * @param context
-     * @param actClas Activity全绝对路径类名，如com.demon.dexlib.TestActivity
      */
-    fun startDexActivity(context: Context, actClas: String) {
-
+    fun replaceLoadedApkClassLoader(context: Context) {
         // I. 获取 ActivityThread 实例对象
         // 获取 ActivityThread 字节码类 , 这里可以使用自定义的类加载器加载
         // 原因是 基于 双亲委派机制 , 自定义的 DexClassLoader 无法加载 , 但是其父类可以加载
@@ -171,7 +166,15 @@ object Utils {
         } catch (e: IllegalAccessException) {
             e.printStackTrace()
         }
+    }
 
+
+    /**
+     * 启动Dex中的Activity
+     * @param context
+     * @param actClas Activity全绝对路径类名，如com.demon.dexlib.TestActivity
+     */
+    fun startDexActivity(context: Context, actClas: String) {
         // 加载Activity类
         // 该类中有可执行方法 test()
         var clazz: Class<*>? = null
@@ -182,9 +185,9 @@ object Utils {
         }
         // 启动Activity组件
         if (clazz != null) {
-            val intent  = Intent(context, clazz)
-            intent.putExtra("string","hello dex~")
-            intent.putExtra("number","1024")
+            val intent = Intent(context, clazz)
+            intent.putExtra("string", "hello dex~")
+            intent.putExtra("number", "1024")
             context.startActivity(intent)
         }
     }

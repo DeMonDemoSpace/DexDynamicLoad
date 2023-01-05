@@ -5,6 +5,11 @@ dex动态加载(Kotlin版):<https://blog.csdn.net/DeMonliuhui/article/details/12
 Android Kotlin反射全解析:<https://demon.blog.csdn.net/article/details/128257378>  
 
 
+### jar转dex
+```
+dx --dex --output=输出dex.jar 目标.jar
+```
+如：  
 ```
 dx --dex --output=dexlib_dex.jar dexlib.jar
 ```
