@@ -52,5 +52,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn5).setOnClickListener {
             startActivity(Intent(this, InstanceActivity::class.java))
         }
+        findViewById<Button>(R.id.btn6).setOnClickListener {
+            Utils.startDexActivity(this, "com.demon.dexlib.TestActivity")
+        }
     }
 }

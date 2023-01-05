@@ -31,6 +31,11 @@
         <activity android:name="com.demon.dexdynamicload.StaticActivity" />
         <activity android:name="com.demon.dexdynamicload.CompanionActivity" />
         <activity android:name="com.demon.dexdynamicload.ObjectActivity" />
+
+
+        <!--注册dex中的Activity，全类名注册
+             不影响编译&打包，无视报错即可-->
+        <activity android:name="com.demon.dexlib.TestActivity"/>
     </application>
 
 </manifest>
