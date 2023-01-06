@@ -1,7 +1,10 @@
 package com.demon.dexlib
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -15,8 +18,15 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
         val text = TextView(this)
-        setContentView(text)
+        val button = Button(this)
+        button.text = "Click"
+        layout.addView(text)
+        layout.addView(button)
+        setContentView(layout)
 
         val sb: StringBuilder = StringBuilder()
         sb.append("TestActivity\n")
@@ -26,5 +36,10 @@ class TestActivity : AppCompatActivity() {
             }
         }
         text.text = sb.toString()
+
+
+        button.setOnClickListener {
+           Toast.makeText(this@TestActivity,"Button~",Toast.LENGTH_SHORT).show()
+        }
     }
 }
